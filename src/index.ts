@@ -43,6 +43,12 @@ export {
 
 export type {
   Auth,
-  FirebaseAuthConfig,
 } from './infrastructure/config/FirebaseAuthClient';
+
+// =============================================================================
+// PRESENTATION LAYER - Hooks
+// =============================================================================
+
+export { useFirebaseAuth } from './presentation/hooks/useFirebaseAuth';
+export type { UseFirebaseAuthResult } from './presentation/hooks/useFirebaseAuth';
 
