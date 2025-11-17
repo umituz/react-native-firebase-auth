@@ -80,9 +80,10 @@ class FirebaseAuthClientSingleton {
   /**
    * Get the Firebase Auth instance
    * Auto-initializes if Firebase App is available
-   * @throws {FirebaseAuthInitializationError} If Auth is not initialized and auto-init fails
+   * Returns null if config is not available (offline mode - no error)
+   * @returns Firebase Auth instance or null if not initialized
    */
-  getAuth(): Auth {
+  getAuth(): Auth | null {
     // Auto-initialize if not already initialized
     if (!this.auth && !this.initializationError) {
       try {
@@ -92,17 +93,13 @@ class FirebaseAuthClientSingleton {
           this.initialize();
         }
       } catch {
-        // Firebase App not available, will throw error below
+        // Firebase App not available, return null (offline mode)
+        return null;
       }
     }
 
-    if (!this.auth) {
-      const errorMsg =
-        this.initializationError ||
-        'Firebase Auth not initialized. Call initialize() first. Make sure Firebase App is initialized via @umituz/react-native-firebase.';
-      throw new FirebaseAuthInitializationError(errorMsg);
-    }
-    return this.auth;
+    // Return null if not initialized (offline mode - no error)
+    return this.auth || null;
   }
 
   /**
@@ -161,9 +158,11 @@ export function initializeFirebaseAuth(
 
 /**
  * Get Firebase Auth instance
- * @throws {FirebaseAuthInitializationError} If Auth is not initialized
+ * Auto-initializes if Firebase App is available
+ * Returns null if config is not available (offline mode - no error)
+ * @returns Firebase Auth instance or null if not initialized
  */
-export function getFirebaseAuth(): Auth {
+export function getFirebaseAuth(): Auth | null {
   return firebaseAuthClient.getAuth();
 }
 
