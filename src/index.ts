@@ -12,9 +12,9 @@
  * - infrastructure: Firebase Auth client implementation
  *
  * Usage:
- *   import { initializeFirebaseAuth, getFirebaseAuth } from '@umituz/react-native-firebase-auth';
+ *   import { getFirebaseAuth } from '@umituz/react-native-firebase-auth';
  *
- * IMPORTANT: Firebase App must be initialized first via @umituz/react-native-firebase
+ * IMPORTANT: Use initializeAllFirebaseServices() from @umituz/react-native-firebase to initialize all Firebase services
  */
 
 // =============================================================================
@@ -33,12 +33,12 @@ export type { FirebaseAuthConfig } from './domain/value-objects/FirebaseAuthConf
 // =============================================================================
 
 export {
-  initializeFirebaseAuth,
   getFirebaseAuth,
   isFirebaseAuthInitialized,
   getFirebaseAuthInitializationError,
   resetFirebaseAuthClient,
   firebaseAuthClient,
+  initializeFirebaseAuth,
 } from './infrastructure/config/FirebaseAuthClient';
 
 export type {

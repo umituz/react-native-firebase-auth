@@ -138,25 +138,6 @@ class FirebaseAuthClientSingleton {
  */
 export const firebaseAuthClient = FirebaseAuthClientSingleton.getInstance();
 
-/**
- * Initialize Firebase Auth
- * This is the main entry point for applications
- *
- * @param config - Optional Firebase Auth configuration
- * @returns Firebase Auth instance or null if initialization fails
- *
- * @example
- * ```typescript
- * import { initializeFirebase } from '@umituz/react-native-firebase';
- * import { initializeFirebaseAuth } from '@umituz/react-native-firebase-auth';
- *
- * // First, initialize Firebase App
- * const app = initializeFirebase(config);
- *
- * // Then, initialize Firebase Auth
- * const auth = initializeFirebaseAuth();
- * ```
- */
 export function initializeFirebaseAuth(
   config?: FirebaseAuthConfig
 ): Auth | null {
