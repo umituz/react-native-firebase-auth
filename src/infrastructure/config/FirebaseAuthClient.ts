@@ -79,9 +79,23 @@ class FirebaseAuthClientSingleton {
 
   /**
    * Get the Firebase Auth instance
-   * @throws {FirebaseAuthInitializationError} If Auth is not initialized
+   * Auto-initializes if Firebase App is available
+   * @throws {FirebaseAuthInitializationError} If Auth is not initialized and auto-init fails
    */
   getAuth(): Auth {
+    // Auto-initialize if not already initialized
+    if (!this.auth && !this.initializationError) {
+      try {
+        // Try to get Firebase App (will auto-initialize if config is available)
+        const app = getFirebaseApp();
+        if (app) {
+          this.initialize();
+        }
+      } catch {
+        // Firebase App not available, will throw error below
+      }
+    }
+
     if (!this.auth) {
       const errorMsg =
         this.initializationError ||
