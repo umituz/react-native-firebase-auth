@@ -63,16 +63,23 @@ class FirebaseAuthClientSingleton {
     try {
       // Get Firebase App instance (must be initialized first)
       const app = getFirebaseApp();
+      
+      // Return null if Firebase App is not available (offline mode)
+      if (!app) {
+        // Don't set initializationError - this is normal offline mode
+        return null;
+      }
 
       // Initialize Auth
       this.auth = FirebaseAuthInitializer.initialize(app, config);
 
       return this.auth;
     } catch (error) {
-      this.initializationError =
-        error instanceof Error
-          ? error.message
-          : 'Failed to initialize Firebase Auth. Make sure Firebase App is initialized first.';
+      // Only set error if it's a real initialization failure, not just missing config
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (!errorMessage.includes('not initialized') && !errorMessage.includes('not available')) {
+        this.initializationError = errorMessage;
+      }
       return null;
     }
   }
