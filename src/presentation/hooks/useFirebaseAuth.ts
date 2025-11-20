@@ -48,6 +48,12 @@ export function useFirebaseAuth(): UseFirebaseAuthResult {
     try {
       const auth = getFirebaseAuth();
       
+      if (!auth) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      
       // Subscribe to auth state changes
       const unsubscribe = onAuthStateChanged(auth, (currentUser: User | null) => {
         setUser(currentUser);
