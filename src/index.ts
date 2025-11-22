@@ -45,6 +45,23 @@ export type {
   Auth,
 } from './infrastructure/config/FirebaseAuthClient';
 
+// Auth Utilities
+export {
+  checkAuthState,
+  isAuthenticated,
+  isGuest,
+  getCurrentUserId,
+  getCurrentUser,
+  getCurrentUserIdFromGlobal,
+  getCurrentUserFromGlobal,
+  isCurrentUserAuthenticated,
+  isCurrentUserGuest,
+} from './infrastructure/services/auth-utils.service';
+
+export type {
+  AuthCheckResult,
+} from './infrastructure/services/auth-utils.service';
+
 // =============================================================================
 // PRESENTATION LAYER - Hooks
 // =============================================================================
