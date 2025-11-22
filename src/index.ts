@@ -62,6 +62,12 @@ export type {
   AuthCheckResult,
 } from './infrastructure/services/auth-utils.service';
 
+// Auth Guard
+export {
+  AuthGuardService,
+  authGuardService,
+} from './infrastructure/services/auth-guard.service';
+
 // =============================================================================
 // PRESENTATION LAYER - Hooks
 // =============================================================================
