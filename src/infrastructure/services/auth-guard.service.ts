@@ -21,7 +21,7 @@ export class AuthGuardService {
    * Check if user is authenticated (not guest)
    * @throws Error if user is not authenticated
    */
-  requireAuthenticatedUser(): string {
+  async requireAuthenticatedUser(): Promise<string> {
     const auth = getFirebaseAuth();
     if (!auth) {
       throw new Error('Firebase Auth is not initialized');
@@ -51,9 +51,9 @@ export class AuthGuardService {
    * Check if user is authenticated (not guest)
    * Returns null if not authenticated instead of throwing
    */
-  getAuthenticatedUserId(): string | null {
+  async getAuthenticatedUserId(): Promise<string | null> {
     try {
-      return this.requireAuthenticatedUser();
+      return await this.requireAuthenticatedUser();
     } catch {
       return null;
     }
