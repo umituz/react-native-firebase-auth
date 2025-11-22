@@ -6,11 +6,11 @@
  * Generic implementation for all React Native apps
  */
 
+import { getFirebaseAuth } from '../config/FirebaseAuthClient';
 import {
-  getFirebaseAuth,
   getCurrentUserId,
   getCurrentUser,
-} from '../config/FirebaseAuthClient';
+} from './auth-utils.service';
 
 /**
  * Auth Guard Service
