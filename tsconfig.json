@@ -15,8 +15,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "noEmit": false,
-    "outDir": "./lib",
+    "noEmit": true,
+    "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": false,
 

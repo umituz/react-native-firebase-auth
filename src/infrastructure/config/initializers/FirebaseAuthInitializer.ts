@@ -29,7 +29,6 @@ export class FirebaseAuthInitializer {
         return getAuth(app);
       }
 
-      /* eslint-disable-next-line no-console */
       if (__DEV__) console.warn('Firebase Auth initialization error:', error);
       return getAuth(app);
     }
@@ -40,7 +39,6 @@ export class FirebaseAuthInitializer {
     config?: FirebaseAuthConfig
   ): Auth {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const authModule = require('firebase/auth');
       const getReactNativePersistence = authModule.getReactNativePersistence;
 

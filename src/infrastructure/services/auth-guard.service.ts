@@ -39,9 +39,7 @@ export class AuthGuardService {
 
     // Check if user is anonymous (guest)
     if (currentUser.isAnonymous) {
-      throw new Error(
-        'Guest users cannot perform this action. Please sign in to continue.',
-      );
+      throw new Error('Guest users cannot perform this action');
     }
 
     return userId;
